@@ -28,6 +28,7 @@ public class EmpController extends MultiActionController {
 		Map<String, Object> rmap = new HashMap<>();
 		rmap.put("mem_name", "이순신");
 		empList.add(rmap);
+		empList = empLogic.getEmpList();
 		//ModelAndView는 scope속성이 request이다.
 		mav.addObject("empList", empList);
 		mav.setViewName("di/getEmpList");
