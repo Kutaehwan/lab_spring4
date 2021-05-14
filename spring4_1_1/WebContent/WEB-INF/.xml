@@ -6,14 +6,11 @@
 	<bean name="/di/hello.sp4" class="kosmo80.mvc.sp4.HelloController" />
 	
 	<!-- id 인스턴스변수라고 봐도 됨 -->
-	<bean id="emp-controller" class="kosmo80.mvc.sp4.EmpController">
-		<property name="methodNameResolver" ref="emp-resolver"/>
-		<property name="empLogic" ref="emp-logic"/>
-	</bean>
+	<bean id="emp-controller" class="kosmo80.mvc.sp4.EmpController" />
 
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
-		<property name="mappings"> <!-- setter의 이름이다. 절대로 건드리면 안 된다. -->
-			<props> <!-- java로 따지면 properties / Key와 value로 접근한다. -->
+		<property name="mappings">
+			<props>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
 				<prop key="/di/empInsert.sp4">emp-controller</prop>
 				<prop key="/di/empUpdate.sp4">emp-controller</prop>

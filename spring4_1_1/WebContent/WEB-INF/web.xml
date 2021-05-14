@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
-  <!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
 	<context-param>
 		<param-name>log4jConfigLocation</param-name>
-		<param-value>/WEB-INF/classes/log4j.properties</param-value>
+		<param-value>/WEB-INF/classes/log4j.properties </param-value>
 	</context-param>
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			/WEB-INF/spring-service.xml
-			,/WEB-INF/spring-data.xml
+		   ,/WEB-INF/spring-data.xml
 		</param-value>
 	</context-param>
 	
@@ -24,27 +24,13 @@
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
 			<param-name>contextConfigLocation</param-name>
-			<!-- 
-				배치 서술자? : 서블릿 (Main x), URL을 매핑하는 (*.sp) -> DispatcherServlet
-				DispatcherServlet : 인터셉트 클래스. (HttpServlet)
-				- Web 기반 : http, 서비스 제공, 동시, 다수, 유지(요청에 대한 - 시스템에서 유지되어야 한다. - Singleton 패턴)
-				즉, Singleton패턴으로 서블릿을 관리한다.
-				.sp로 들어오는 모든 요청 건에 대해서는 FrontController = DispatcherServlet
-				우리는 3개의 xml을 만들었다.
-				1) sevlet-context.xml // 반드시 param-value에 정의되어 져야 한다.
-				2) root-context.xml // Model 계층
-				3) spring-data.xml // ORM 솔루션, Model계층
-				
-				# 의존성 주입(DI), 제어 역행
-				WAS -> Tomcat ->  컨테이너
-			-->
-			<param-value>/WEB-INF/spring/appServlet/servlet-context.xml</param-value>
+			<param-value>/WEB-INF/spring-servlet.xml</param-value>
 		</init-param>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>*.sp4</url-pattern> <!-- URL패턴의 매핑 정의 -->
+		<url-pattern>*.sp4</url-pattern>
 	</servlet-mapping>
 </web-app>
