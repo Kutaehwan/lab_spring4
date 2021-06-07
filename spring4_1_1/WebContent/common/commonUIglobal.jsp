@@ -2,7 +2,7 @@
 <%-- <% 
 	StringBuilder path = new StringBuilder(request.getContextPath());
 	path.append("/");
-%> --%>
+%>   --%>
     
 <!-- jEasyUI -->
 <link rel="stylesheet" type="text/css" href="../themes/default/easyui.css" >
