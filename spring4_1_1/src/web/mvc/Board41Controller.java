@@ -72,4 +72,22 @@ public class Board41Controller extends MultiActionController {
 		PrintWriter out = res.getWriter();
 		out.print(imsi);
 	}
+	
+	// 입력 부분(Spring-sevlet.xml)에서 먼저 수정하였다. / url-mapping, resolver
+	public void boardInsert(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("Board41Controller-boardInsert 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String, Object> pmap = new HashMap<>();
+		// 사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값을 넘긴다.
+		hmb.bind(pmap);
+		int result = 0;
+		result = boardLogic.boardInsert(pmap);
+		if (result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		} else {
+			//res.sendRedirect("페이지 등록 실패");
+			res.sendRedirect("./boardInsertFail.jsp");
+		}
+		
+	}
 }

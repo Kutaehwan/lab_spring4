@@ -21,6 +21,7 @@
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings"> <!-- setter의 이름이다. 절대로 건드리면 안 된다. -->
 			<props> <!-- java로 따지면 properties / Key와 value로 접근한다. -->
+				<prop key="/board/boardInsert.sp4">board-controller</prop>
 				<prop key="/board/getBoardList.sp4">board-controller</prop> <!-- board-controller : 14번 라인의 id -->
 				<prop key="/board/jsonGetBoardList.sp4">board-controller</prop>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
@@ -45,6 +46,7 @@
 	<bean id="board-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
 			<props>
+				<prop key="/board/boardInsert.sp4">boardInsert</prop>
 				<prop key="/board/getBoardList.sp4">getBoardList</prop> <!-- getBoardList = value : 메소드 이름 -->
 				<prop key="/board/jsonGetBoardList.sp4">jsonGetBoardList</prop>
 			</props>
