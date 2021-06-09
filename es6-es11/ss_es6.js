@@ -16,4 +16,16 @@
   // Object Copy
   const otherEmp = {...emp};
   console.log(otherEmp);
+
+  // array contcatenation
+  const transportaion1 = ['🍌', '🍧'];
+  const transportaion2 = ['🥗', '🥑'];
+  const transportaion = [...transportaion1, ...transportaion2];
+  console.log(transportaion);
+
+  // Object merge
+  const bird1 = { bird1 : '🍕'};
+  const bird2 = { bird2 : '🍔'};
+  const birds = {...bird1, ...bird2};
+  console.log(birds);
 }
