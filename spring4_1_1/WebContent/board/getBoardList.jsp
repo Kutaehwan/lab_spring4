@@ -19,6 +19,11 @@
 	  console.log("입력창 호출");
 	  $('#dlg_ins').dialog('open');
   }
+  /* 입력 모달창에서 register 버튼 클릭  눌렀을 때*/
+  function register() {
+	  console.log("register 버튼 클릭!!");
+  }
+  
 </script>
 
 </head>
@@ -66,7 +71,7 @@
         </div>
         
         <div>
-            <a href="#" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Register</a>
+            <a href="javascript:register()" class="easyui-linkbutton" iconCls="icon-ok" style="width:100%;height:32px">Register</a>
         </div>
     </div>
 </body>

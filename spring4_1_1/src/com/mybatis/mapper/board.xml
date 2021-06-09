@@ -4,6 +4,19 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!-- .dtd : 명세서 -->
 <mapper namespace="com.mybatis.mapper.BoardMapper">
 <!-- id와 method이름 통일 -->
+
+	<insert id="boardMInsert" parameterType="map">
+		INSERT INTO board_master2019(bm_no, bm_title, bm_writer, bm_email
+		                           , bm_content, bm_date, bm_group, bm_pos, bm_step, bm_pw) 
+		                      values(#{bm_no},#{bm_title},#{bm_writer},#{bm_email}
+		                           , #{bm_content}, to_char(sysdate, 'YYYY-MM-DD'), 0,0,0,#{bm_pw}
+		                            )
+	</insert>
+	
+	<insert id="boardSInsert" parameterType="map">
+		INSERT INTO board_sub2019(bm_no,bs_seq,bs_file,bs_size) values(#{bm_no},#{bs_seq},#{bs_file},#{bs_size})
+	</insert>
+
 <!-- sqlSesstion.selectList(id, parmeter) -->
 	<select id="getBoardList" parameterType="map" resultType="map">
 		select bm.bm_no, bm.bm_title, bm.bm_date, bs.bs_file, bm.bm_hit
