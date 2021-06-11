@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+   	<typeAliases>
+   		<typeAlias alias ="eVO" type ="com.vo.EmpVO"/>
+	</typeAliases>
+		<!-- -->
+  	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="UNPOOLED">
+				<property name="driver" value="oracle.jdbc.driver.OracleDriver" /> 
+				<!-- <property name="driver" value="com.p6spy.engine.spy.P6SpyDriver"/>  -->
+				<property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:orcl11" />
+				<property name="username" value="scott" />
+				<property name="password" value="tiger" />
+			</dataSource>
+		</environment>
+	</environments> 
+	
+	<!-- 
+  	<environments default="development">
+		<environment id="development">
+		<transactionManager type="JDBC"/>
+		<dataSource type="JNDI">
+			<property name="data_source" value="java:comp/env/jdbc/dbPool"/>			
+		</dataSource>
+		</environment>
+	</environments>
+	 -->
+	<mappers>
+		<mapper resource="com/mybatis/mapper/emp.xml" />
+	</mappers>
+</configuration>
