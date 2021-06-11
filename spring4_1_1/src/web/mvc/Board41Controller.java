@@ -42,6 +42,7 @@ public class Board41Controller extends MultiActionController {
 	// 말하는 것은 앞뒤가 맞지 않는 것이다. 이상한 태도를 보이는 것이다.
 	// 굳이 없어도 되는 것을 형식적으로 가지고 있어야 한다. doGet안에 있는 것이니까 너도 있어야 해줄거야? 라고 말하는 것이다.
 	
+	// 전체 조회
 	public ModelAndView getBoardList(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("Board41Controller-getBoardList 호출 성공");
 		HashMapBinder hmb = new HashMapBinder(req);
@@ -54,12 +55,35 @@ public class Board41Controller extends MultiActionController {
 		
 		// ModelAndView => WebContent-WEB_INF-views-board-getBoardList.jsp
 		ModelAndView mav = new ModelAndView();
-//		mav.setViewName("board/getBoardList");
-//		mav.addObject("boardList", boardList); // b++++oardList, 주소번지를 request에 담는다.
+		mav.setViewName("board/getBoardList");
+		mav.addObject("boardList", boardList); // boardList, 주소번지를 request에 담는다.
 		
 		// RequestDispatcher => WebContent-board-getBoardList.jsp
-		RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
-		view.forward(req, res);
+//		RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
+//		view.forward(req, res);
+		return mav;
+	}
+	
+	// 상세 조회
+	public ModelAndView getBoardDetail(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("Board41Controller-getBoardDetail 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String, Object> target = new HashMap<>();
+		hmb.bind(target);
+		logger.info("bm_no : "+target.get("bm_no"));
+		List<Map<String, Object>> boardDetail = null;
+		
+		boardDetail = boardLogic.getBoardList(target);
+		logger.info("boardList : " + boardDetail);
+		
+		// ModelAndView => WebContent-WEB_INF-views-board-getBoardList.jsp
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/read");
+		mav.addObject("boardDetail", boardDetail); // boardList, 주소번지를 request에 담는다.
+		
+		// RequestDispatcher => WebContent-board-getBoardList.jsp
+//		RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
+//		view.forward(req, res);
 		return mav;
 	}
 	

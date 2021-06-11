@@ -42,7 +42,7 @@ public class Board41Logic {
 		}
 		int fileOK = 0;
 		// 첨부파일이 있어?
-		if ((pmap.get("bm_pos") != null) & (pmap.get("bm_pos").toString().length() > 0)) {
+		if ((pmap.get("bs_file") != null) & (pmap.get("bm_pos").toString().length() > 0)) {
 			pmap.put("bm_no", bm_no);
 			pmap.put("bm_seq", 1);
 			fileOK = boardSDao.boardSInsert(pmap);
