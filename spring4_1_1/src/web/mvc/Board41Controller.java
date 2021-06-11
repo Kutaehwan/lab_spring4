@@ -51,10 +51,13 @@ public class Board41Controller extends MultiActionController {
 		boardList = boardLogic.getBoardList(target);
 		logger.info("boardList : " + boardList);
 		req.setAttribute("boardList", boardList);
+		
+		// ModelAndView => WebContent-WEB_INF-views-board-getBoardList.jsp
 		ModelAndView mav = new ModelAndView();
 //		mav.setViewName("board/getBoardList");
 //		mav.addObject("boardList", boardList); // b++++oardList, 주소번지를 request에 담는다.
 		
+		// RequestDispatcher => WebContent-board-getBoardList.jsp
 		RequestDispatcher view = req.getRequestDispatcher("getBoardList.jsp");
 		view.forward(req, res);
 		return mav;
