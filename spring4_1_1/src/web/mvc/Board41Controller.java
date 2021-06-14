@@ -65,11 +65,14 @@ public class Board41Controller extends MultiActionController {
 	}
 	
 	// 상세 조회
+	// return - ModelAndView
+	// 주의사항 - 전체 조회와 하나로 합쳐지니까 Target에 구분값을 추가할 것 (target.put("gubun", "detail");)
 	public ModelAndView getBoardDetail(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("Board41Controller-getBoardDetail 호출 성공");
 		HashMapBinder hmb = new HashMapBinder(req);
 		Map<String, Object> target = new HashMap<>();
 		hmb.bind(target);
+		target.put("gubun", "detail");
 		logger.info("bm_no : "+target.get("bm_no"));
 		List<Map<String, Object>> boardDetail = null;
 		
@@ -92,7 +95,11 @@ public class Board41Controller extends MultiActionController {
 		logger.info("Board41Controller-jsonGetBoardList 호출 성공");
 		List<Map<String, Object>> boardList = null;
 //		Map<String, Object> rmap = new HashMap<>();
-		boardList = boardLogic.getBoardList(null);
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String, Object> target = new HashMap<>();
+		hmb.bind(target);
+//		boardList = boardLogic.getBoardList(null);
+		boardList = boardLogic.getBoardList(target);
 		Gson g = new Gson();
 		String imsi = g.toJson(boardList);
 		res.setContentType("application/json;charset=utf-8");

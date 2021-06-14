@@ -21,10 +21,15 @@ public class Board41MDao {
 	public int boardMInsert(Map<String, Object> pmap) {
 		logger.info("Board41Mdao - boardMInsert 호출 성공");
 		int result = 0;
-		result = 1;
+//		result = 1;
 		sqlSessionTemplate.insert("boardMInsert",pmap);
 		return result;
 		
+	}
+	// 조회수 카운트
+	public void hitCount(int bm_no) {
+		logger.info("Board41Mdao - hitCount 호출 성공");
+		sqlSessionTemplate.update("hitCount",bm_no);
 	}
 	public void bmStepUpdate(Map<String, Object> pmap) {
 		logger.info("Board41Mdao - bmStepUpdate 호출 성공");

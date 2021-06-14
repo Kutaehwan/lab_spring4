@@ -47,6 +47,7 @@
 	<bean id="board-resolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
 		<property name="mappings">
 			<props>
+				<prop key="/upload/uploadForm.sp4">uploadForm</prop>
 				<prop key="/board/getBoardDetail.sp4">getBoardDetail</prop>
 				<prop key="/board/boardInsert.sp4">boardInsert</prop>
 				<prop key="/board/getBoardList.sp4">getBoardList</prop> <!-- getBoardList = value : 메소드 이름 -->

@@ -14,7 +14,7 @@ public class HashMapBinder {
 	public HashMapBinder(HttpServletRequest request) {
 		this.request = request;
 	}
-	public void bind(Map<String, Object> target) {
+	public void bind(Map<String, Object> target) { // 배열의 구조체로 묶음
 		Enumeration en = request.getParameterNames();
 		// <input type = "text" name="mem_id" && 비밀번호 />
 		while (en.hasMoreElements()) {

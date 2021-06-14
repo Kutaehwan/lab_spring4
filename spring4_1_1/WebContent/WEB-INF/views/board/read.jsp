@@ -49,6 +49,10 @@
 	function repleForm(){
 		$("#dlg_boardAdd").dialog('open');
 	}
+	// 목록 보기
+	function boardList() {
+		location.href="getBoardList.sp4";
+	}
 </script>
 
 </head>

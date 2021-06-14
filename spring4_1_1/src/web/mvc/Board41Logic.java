@@ -14,6 +14,15 @@ public class Board41Logic {
 	public List<Map<String, Object>> getBoardList(Map<String, Object> pmap) {
 		logger.info("Board41Logic - getBoardList 호출 성공");
 		List<Map<String, Object>> boardList = null;
+		String gubun = null;
+		if (pmap.get("gubun") != null) {
+			gubun = pmap.get("gubun").toString();
+		}
+		if (gubun != null && "detail".equals(gubun)) {
+			int bm_no = 0;
+			bm_no = Integer.parseInt(pmap.get("bm_no").toString());
+			boardMDao.hitCount(bm_no);
+		}
 		boardList = boardMDao.getBoardList(pmap);
 		return boardList;
 	}
@@ -36,18 +45,20 @@ public class Board41Logic {
 		// 넌 새글이구나.
 		else {
 			bm_group = boardMDao.getBmGroup();
+			bm_no = Integer.parseInt(pmap.get("bm_no").toString());
 			pmap.put("bm_group", bm_group);
 			pmap.put("bm_pos", 0);
 			pmap.put("bm_step", 0);
 		}
 		int fileOK = 0;
 		// 첨부파일이 있어?
-		if ((pmap.get("bs_file") != null) & (pmap.get("bm_pos").toString().length() > 0)) {
+		if ((pmap.get("bs_file") != null) & (pmap.get("bs_file").toString().length() > 0)) {
 			pmap.put("bm_no", bm_no);
 			pmap.put("bm_seq", 1);
 			fileOK = boardSDao.boardSInsert(pmap);
 		}
 //		List<Map<String, Object>> boardInsert = null;
+		logger.info("1111111111111111111111111111111111111111");
 		boardMDao.boardMInsert(pmap);
 		result = 1;
 		return result;
