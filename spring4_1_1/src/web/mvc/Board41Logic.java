@@ -58,7 +58,6 @@ public class Board41Logic {
 			fileOK = boardSDao.boardSInsert(pmap);
 		}
 //		List<Map<String, Object>> boardInsert = null;
-		logger.info("1111111111111111111111111111111111111111");
 		boardMDao.boardMInsert(pmap);
 		result = 1;
 		return result;
