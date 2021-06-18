@@ -16,13 +16,22 @@
 		<property name="boardLogic" ref="board-logic"/>
 	</bean>
 	
+	<bean id="upload-controller" class="web.mvc.UploadController">
+		<property name="methodNameResolver" ref="board-resolver"/>
+		<property name="uploadLogic" ref="upload-logic"/>
+	</bean>
+	
 	<!-- Spring 이 관리 -->
 	<!-- web.xml 대체 : simpleUrlHandlerMapping -->
 	<bean id="url-mapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
 		<property name="mappings"> <!-- setter의 이름이다. 절대로 건드리면 안 된다. -->
 			<props> <!-- java로 따지면 properties / Key와 value로 접근한다. -->
+				<prop key="/upload/uploadForm.sp4">upload-controller</prop>
 				<prop key="/board/getBoardDetail.sp4">board-controller</prop>
 				<prop key="/board/boardInsert.sp4">board-controller</prop>
+				<prop key="/board/boardUpdate.sp4">board-controller</prop>
+				<prop key="/board/boardDelete.sp4">board-controller</prop>
+				<prop key="/board/updateForm.sp4">board-controller</prop>
 				<prop key="/board/getBoardList.sp4">board-controller</prop> <!-- board-controller : 14번 라인의 id -->
 				<prop key="/board/jsonGetBoardList.sp4">board-controller</prop>
 				<prop key="/di/getEmpList.sp4">emp-controller</prop>
@@ -50,6 +59,9 @@
 				<prop key="/upload/uploadForm.sp4">uploadForm</prop>
 				<prop key="/board/getBoardDetail.sp4">getBoardDetail</prop>
 				<prop key="/board/boardInsert.sp4">boardInsert</prop>
+				<prop key="/board/boardUpdate.sp4">boardUpdate</prop>
+				<prop key="/board/boardDelete.sp4">boardDelete</prop>
+				<prop key="/board/updateForm.sp4">updateForm</prop>
 				<prop key="/board/getBoardList.sp4">getBoardList</prop> <!-- getBoardList = value : 메소드 이름 -->
 				<prop key="/board/jsonGetBoardList.sp4">jsonGetBoardList</prop>
 			</props>

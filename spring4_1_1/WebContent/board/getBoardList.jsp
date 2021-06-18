@@ -55,7 +55,7 @@
 		        {field:'BM_HIT',title:'조회수',width:100,align:'center'}
 		    ]]
 		});		
-	    $('#btn_sel').bind('click', function(){
+	    /* $('#btn_sel').bind('click', function(){
 	        //alert('조회');
 	        boardSel();
 	    });		
@@ -70,7 +70,7 @@
 	    $('#btn_del').bind('click', function(){
 	        //alert('삭제');
 	        boardDel();
-	    });		
+	    });	 */	
 	});
 </script>
 <table id="dg_board" class="easyui-datagrid" data-options="title:'게시판',toolbar:'#tb_board'" style="width:1000px;height:350px">

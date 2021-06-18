@@ -111,9 +111,10 @@ public class Board41Controller extends MultiActionController {
 	public void boardInsert(HttpServletRequest req, HttpServletResponse res) throws Exception {
 		logger.info("Board41Controller-boardInsert 호출 성공");
 		HashMapBinder hmb = new HashMapBinder(req);
+		logger.info(req);
 		Map<String, Object> pmap = new HashMap<>();
 		// 사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값을 넘긴다.
-		hmb.bind(pmap);
+		hmb.multibind(pmap);
 		int result = 0;
 		result = boardLogic.boardInsert(pmap);
 		if (result == 1) {
@@ -122,6 +123,57 @@ public class Board41Controller extends MultiActionController {
 			//res.sendRedirect("페이지 등록 실패");
 			res.sendRedirect("./boardInsertFail.jsp");
 		}
+	}
+	
+	// 수정
+	public ModelAndView updateForm(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("Board41Controller-updateForm 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String, Object> target = new HashMap<>();
+//		hmb.bind(target);
+		hmb.multibind(target);
+		target.put("gubun", "detail");
+		logger.info("bm_no : "+target.get("bm_no"));
 		
+		// ModelAndView => WebContent-WEB_INF-views-board-getBoardList.jsp
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("board/updateForm");
+		mav.addObject("target", target); // boardList, 주소번지를 request에 담는다.
+		
+		return mav;
+	}
+	
+	public void boardUpdate(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("Board41Controller-boardInsert 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		logger.info(req);
+		Map<String, Object> pmap = new HashMap<>();
+		// 사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값을 넘긴다.
+		hmb.multibind(pmap);
+		int result = 0;
+		result = boardLogic.boardUpdate(pmap);
+		if (result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		} else {
+			//res.sendRedirect("페이지 등록 실패");
+			res.sendRedirect("./boardInsertFail.jsp");
+		}
+	}
+	
+	public void boardDelete(HttpServletRequest req, HttpServletResponse res) throws Exception {
+		logger.info("Board41Controller-boardDelete 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		logger.info(req);
+		Map<String, Object> pmap = new HashMap<>();
+		// 사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값을 넘긴다.
+		hmb.bindPost(pmap);
+		int result = 0;
+		result = boardLogic.boardDelete(pmap);
+		if (result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		} else {
+			//res.sendRedirect("페이지 등록 실패");
+			res.sendRedirect("./boardInsertFail.jsp");
+		}
 	}
 }

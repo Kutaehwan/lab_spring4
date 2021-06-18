@@ -7,5 +7,7 @@
 		<property name="boardMDao" ref="board-mdao"/>
 		<property name="boardSDao" ref="board-sdao"/>
 	</bean>
+	
+	<bean id="upload-logic" class="web.mvc.UploadLogic"/>
 
 </beans>

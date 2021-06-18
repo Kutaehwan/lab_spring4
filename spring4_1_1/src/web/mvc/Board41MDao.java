@@ -41,4 +41,23 @@ public class Board41MDao {
 		result = sqlSessionTemplate.selectOne("getBmGroup");
 		return result;
 	}
+	public int getBmNo(int bm_no) {
+		int result = 0;
+		result = sqlSessionTemplate.selectOne("getBmNo", bm_no);
+		return result;
+	}
+	public int boardMUpdate(Map<String, Object> pmap) {
+		logger.info("Board41Mdao - boardMUpdate 호출 성공");
+		int result = 0;
+		result = sqlSessionTemplate.update("boardMUpdate", pmap);
+		logger.info("result : " + result);
+		return result;
+	}
+	public int boardMDelete(Map<String, Object> pmap) {
+		logger.info("Board41Mdao - boardMDelete 호출 성공");
+		int result = 0;
+		result = sqlSessionTemplate.delete("boardMDel", pmap);
+		logger.info("result : " + result);
+		return result;
+	}
 }

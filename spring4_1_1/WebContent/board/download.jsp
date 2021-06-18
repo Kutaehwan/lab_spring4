@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.io.*,java.net.*" %>    
 <%
-	String b_file = request.getParameter("b_file");
+	request.setCharacterEncoding("UTF-8");
+	String b_file = request.getParameter("bs_file");
 	String fname = b_file;
 	out.print("b_file: 8->euc"+b_file);		
 	out.print("<br>");		
