@@ -116,7 +116,8 @@ public class Board41Controller extends MultiActionController {
 		// 사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값을 넘긴다.
 		hmb.multibind(pmap);
 		int result = 0;
-		result = boardLogic.boardInsert(pmap);
+//		result = boardLogic.boardInsert(pmap);
+		result = boardLogic.cudBoard(pmap);
 		if (result == 1) {
 			res.sendRedirect("./getBoardList.sp4");
 		} else {
@@ -174,6 +175,26 @@ public class Board41Controller extends MultiActionController {
 		} else {
 			//res.sendRedirect("페이지 등록 실패");
 			res.sendRedirect("./boardInsertFail.jsp");
+		}
+	}
+	
+	public void cudBoard(HttpServletRequest req, HttpServletResponse res) 
+			throws Exception
+	{
+		logger.info("cudBoard 호출 성공");
+		HashMapBinder hmb = new HashMapBinder(req);
+		Map<String,Object> pmap = new HashMap<>();
+		pmap.put("bm_title","Title Test");
+		pmap.put("bm_writer","작성자");
+		pmap.put("bm_content","내용");
+		//사용자가 입력한 값이나 서버에서 클라이언트에게 요청한 값 넘김.
+		int result = 0;
+		result = boardLogic.boardInsert(pmap);
+		if(result == 1) {
+			res.sendRedirect("./getBoardList.sp4");
+		}
+		else {
+			res.sendRedirect("등록실패 페이지 이동처리");
 		}
 	}
 }

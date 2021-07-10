@@ -1,13 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="emp-logic" class="kosmo80.mvc.sp4.EmpLogic"/>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:aop="http://www.springframework.org/schema/aop" 
+       xmlns:tx="http://www.springframework.org/schema/tx" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+       ">
+	<aop:config> <!-- aop를 정의 -->
+		<aop:pointcut expression="execution(* web.mvc.*Logic.*(..))" id="point-cut"/> <!-- 포인트 컷을 어디에서 작동할 것인지 -->
+		<aop:advisor advice-ref="tx-advice" pointcut-ref="point-cut"/>
+	</aop:config>
+	<tx:advice id="tx-advice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="do*"/>
+			<tx:method name="cud*"/>
+		</tx:attributes>
+	</tx:advice>
+	<bean id="emp-logic" class="kosmo80.mvc.sp4.EmpLogic" />
 	<bean id="board-logic" class="web.mvc.Board41Logic">
 		<property name="boardMDao" ref="board-mdao"/>
 		<property name="boardSDao" ref="board-sdao"/>
-	</bean>
-	
+	</bean>	
+	<!-- <bean id="bsboard-logic" class="web.mvc.BS_BoardLogic">
+		<property name="bsboardMDao" ref="bsboard-mdao"/>
+		<property name="bsboardSDao" ref="bsboard-sdao"/>
+	</bean> -->
 	<bean id="upload-logic" class="web.mvc.UploadLogic"/>
-
 </beans>

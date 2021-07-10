@@ -100,6 +100,48 @@ public class Board41Logic {
 		}
 		return result;
 	}
+	
+	public int cudBoard(Map<String, Object> pmap) {
+		int result = 0;
+
+		try {
+			logger.info("boardInsert 호출 성공");
+			int bm_no = 0;
+			bm_no = boardMDao.getBmNo();
+			pmap.put("bm_no", bm_no);
+			int bm_group = 0;
+			if(pmap.get("bm_group")!=null) {//read.jsp눌렀다
+				bm_group = Integer.parseInt(pmap.get("bm_group").toString());
+			}
+			//댓글이야?
+			if(bm_group > 0) {
+				boardMDao.bmStepUpdate(pmap);//조건에 맞지 않으면 처리가 생략될 수 있다.
+				pmap.put("bm_pos", Integer.parseInt(pmap.get("bm_pos").toString())+1);
+				pmap.put("bm_step", Integer.parseInt(pmap.get("bm_step").toString())+1);
+			}
+			//너 새글이구나
+			else {
+				bm_group = boardMDao.getBmGroup();
+				pmap.put("bm_group", bm_group);
+				pmap.put("bm_pos",0);
+				pmap.put("bm_step",0);
+			}
+			boardMDao.boardMInsert(pmap);		
+			//첨부파일이 있어?
+			if((pmap.get("bs_file")!=null)&&((pmap.get("bs_file").toString().length()) > 0)) {
+				logger.info("첨부파일 처리 로직 경유");
+				pmap.put("bm_no", bm_no);
+				pmap.put("bm_seq", 1);
+				boardSDao.boardSInsert(pmap);			
+			}
+			
+		} catch (Exception e) {
+			throw e;
+		}
+		return result;
+	}///////////////////end of cudBoard
+	
+	
 
 	public void setBoardMDao(Board41MDao boardMDao) { // spring-service에서 boardMDao
 		this.boardMDao = boardMDao;

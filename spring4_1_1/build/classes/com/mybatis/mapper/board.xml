@@ -87,6 +87,13 @@
 		</if>
 		ORDER BY bm_group desc, bm_no asc
 	</select>
+	
+	<!-- <select id="getBoardMap" parameterType="map" resultMap="boardMMap">
+		 SELECT bm.bm_no, bm.bm_title, bm.bm_date, bs.bs_file, bm.bm_hit
+		  FROM board_master2019 bm
+		      ,board_sub2019 bs
+		 WHERE bm.bm_no = bs.bm_no(+)	
+	</select> -->
 
 	<select id="test" parameterType="map" resultType="string">
 		<!-- select To_CHAR(sysdate, 'YYYY-MM-DD') from dual -->
